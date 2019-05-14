@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+@import 'color/fontColor';
+
+.title {
+  color: $highlight-color;
+  text-align: center;
+  font-size: 100px;
+  font-weight: 200;
+}
+.imgStyle {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}

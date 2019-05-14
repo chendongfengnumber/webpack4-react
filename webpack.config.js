@@ -1,4 +1,4 @@
-const path = require('path'); // 不懂的参与node.js 文档
+const path = require('path'); // 不懂的参考node.js 文档
 const root = __dirname;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -25,6 +25,15 @@ module.exports = {
         // css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能
         // style-loader 将所有的计算后的样式加入页面中
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|ico)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]'
+          }
+        }]
       }
     ]
   },
@@ -32,7 +41,7 @@ module.exports = {
   // 提供bundle文件的阅览入口
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'demo-react',
+      title: 'react-demo',
       template: path.resolve(root, 'template.html')
     })
   ],
