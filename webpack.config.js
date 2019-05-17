@@ -12,6 +12,9 @@ module.exports = {
     path: path.resolve(root, 'dist')
   },
 
+  // 打包的文件包含源文件方便调试
+  devtool: "#inline-source-map",
+
   // 使用loaders编译对应类型文件
   module: {
     rules: [

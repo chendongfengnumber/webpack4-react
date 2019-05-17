@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import lodash from 'lodash';
 
 
@@ -27,10 +27,10 @@ function handleRoute(routers) {
 }
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
       { handleRoute(routers) }
     </Switch>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById('root')
 );
