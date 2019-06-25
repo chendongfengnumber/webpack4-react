@@ -1,5 +1,5 @@
-import HomePage from '../src/pages/HomePage';
-import TestPage from '../src/pages/TestPage';
+import HomePage from './pages/HomePage';
+import TestPage from './pages/TestPage';
 
 const routerConfigs = [
   {
