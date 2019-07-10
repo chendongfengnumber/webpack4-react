@@ -7,7 +7,6 @@ pipeline {
   }
 
   stages {
-
     stage('初始化') {
       steps {
         sh 'npm install'
@@ -22,7 +21,7 @@ pipeline {
 
     stage('构建') {
       steps {
-
+        echo '完成'
       }
     }
   }
