@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,8 +21,8 @@ const url = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR' +
 const propTypes = {
   history: PropTypes.object.isRequired,
   loadHomeDataAction: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
-}
+  user: PropTypes.object.isRequired,
+};
 
 class HomePage extends Component {
 
@@ -43,7 +43,7 @@ class HomePage extends Component {
   loadUserInfo() {
     const { loadHomeDataAction } = this.props;
     loadHomeDataAction.loadHomeData();
-  };
+  }
 
   logOut() {
     const { loadHomeDataAction } = this.props;
@@ -51,56 +51,69 @@ class HomePage extends Component {
   }
 
   renderLoginSuccessWelcomeTitle() {
-    let { isLogin, age, name } = this.props.user;
+    const { isLogin, age, name } = this.props.user;
     if (isLogin) {
       return (
-        <div className='loginSuccess'>
+        <div className="loginSuccess">
           欢迎{age}的{name}来到这里
         </div>
-      )
+      );
     }
+    return null;
   }
 
   renderLoginButtonStatus() {
     const { isLogin } = this.props.user;
-    if(isLogin) {
+    if (isLogin) {
       return (
-        <div className='loginBtn' onClick={this.logOut}>退出</div>
-      )
+        <button
+          className="loginBtn"
+          onClick={this.logOut}
+        >
+          退出
+        </button>
+      );
     }
 
     return (
-      <div className='loginBtn' onClick={this.loadUserInfo}>登录</div>
-    )
+      <button
+        className="loginBtn"
+        onClick={this.loadUserInfo}
+      >
+        登录
+      </button>
+    );
   }
 
   render() {
     return (
       <div>
-        <div className='title'>hello react</div>
-        <div className='imgStyle'>
-          <img src={`${url}`} width={100} height={100} />
+        <div className="title">hello react</div>
+        <div className="imgStyle">
+          <img alt="" src={`${url}`} width={100} height={100} />
         </div>
-        <div className='imgStyle'>
-          <img src={king} width={100} height={100} />
+        <div className="imgStyle">
+          <img alt="" src={king} width={100} height={100} />
         </div>
-        <div onClick={this.toTestPage}>toTestPage</div>
+        <button
+          onClick={this.toTestPage}
+        >
+          toTestPage
+        </button>
 
-        { this.renderLoginButtonStatus() }
-        { this.renderLoginSuccessWelcomeTitle() }
+        {this.renderLoginButtonStatus()}
+        {this.renderLoginSuccessWelcomeTitle()}
       </div>
     );
-  };
+  }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.homeReducers.user
-  }
-};
+const mapStateToProps = state => ({
+  user: state.homeReducers.user,
+});
 
 const mapDispatchToProps = dispatch => ({
-  loadHomeDataAction: bindActionCreators(HomeDataCreators, dispatch)
+  loadHomeDataAction: bindActionCreators(HomeDataCreators, dispatch),
 });
 
 HomePage.propTypes = propTypes;

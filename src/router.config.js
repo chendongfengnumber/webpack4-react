@@ -4,12 +4,12 @@ import TestPage from './pages/TestPage';
 const routerConfigs = [
   {
     path: '/',
-    component: HomePage
+    component: HomePage,
   },
   {
     path: '/test',
-    component: TestPage
-  }
-]
+    component: TestPage,
+  },
+];
 
 export default routerConfigs;

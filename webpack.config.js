@@ -1,19 +1,25 @@
-const path = require('path'); // 不懂的参考node.js 文档
+const path = require('path');
+ // 不懂的参考node.js 文档
 const root = __dirname;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 打包入口文件
-  entry: path.resolve(root, 'src/main.js'),
+  entry: path.resolve(root, 'src/main.jsx'),
+
+  // 解析文件后缀
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 
   // 打包输出文件
   output: {
     filename: 'bundle.js',
-    path: path.resolve(root, 'dist')
+    path: path.resolve(root, 'dist'),
   },
 
   // 打包的文件包含源文件方便调试
-  devtool: "#inline-source-map",
+  devtool: '#inline-source-map',
 
   // 使用loaders编译对应类型文件
   module: {
@@ -21,36 +27,36 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: ['babel-loader'],
-        exclude: path.resolve(root, 'node_modules')
+        exclude: path.resolve(root, 'node_modules'),
       },
       {
         test: /\.scss$/,
         // css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能
         // style-loader 将所有的计算后的样式加入页面中
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(jpg|jpeg|png|gif|ico)$/,
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[path][name].[ext]'
-          }
-        }]
-      }
-    ]
+            name: '[path][name].[ext]',
+          },
+        }],
+      },
+    ],
   },
 
   // 提供bundle文件的阅览入口
   plugins: [
     new HtmlWebpackPlugin({
       title: 'react-demo',
-      template: path.resolve(root, 'template.html')
-    })
+      template: path.resolve(root, 'template.html'),
+    }),
   ],
   mode: 'none',
   devServer: {
     contentBase: path.resolve(root, 'dist'),
-    port: 8089
-  }
-}
+    port: 8089,
+  },
+};
