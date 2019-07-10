@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('初始化') {
       steps {
-        sh 'npm install'
+        sh 'npm install --registry=https://registry.npm.taobao.org'
       }
     }
 
