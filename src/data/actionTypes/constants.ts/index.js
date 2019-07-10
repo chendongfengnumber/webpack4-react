@@ -1,7 +1,7 @@
 import Home from './home';
 
 const actionTypes = {
-  Home
+  Home,
 };
 
-export default actionTypes
+export default actionTypes;

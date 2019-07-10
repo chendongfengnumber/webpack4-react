@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack-dev-server --hot --open"
+    "dev": "webpack-dev-server --hot --open",
+    "lint": "eslint --fix  --debug  src"
   },
   "author": "",
   "license": "ISC",

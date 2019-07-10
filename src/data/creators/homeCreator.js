@@ -5,6 +5,7 @@ export function loadHomeData() {
   return (dispatch, getState) => {
     const { user } = getState().homeReducers;
     const data = {};
+    console.log(user);
     Object.assign(data, { ...userInfo, isLogin: true });
     dispatch(homeLoadData(data));
   };

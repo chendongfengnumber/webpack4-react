@@ -1,8 +1,7 @@
-
 import actionTypes from '../actionTypes/constants.ts';
 
 const initState = {
-  user: { isLogin: false }
+  user: { isLogin: false },
 };
 
 function homeReducer(state = initState, action) {
