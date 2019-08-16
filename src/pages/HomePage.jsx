@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import '../styles/HomePage.scss';
 import king from '../asset/king.jpg';
 import * as HomeDataCreators from '../data/creators/homeCreator';
@@ -29,15 +28,24 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      fileId: 0,
+    };
+
     this.toTestPage = this.toTestPage.bind(this);
     this.loadUserInfo = this.loadUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.toCreateOrder = this.toCreateOrder.bind(this);
   }
-
 
   toTestPage() {
     const { history } = this.props;
     history.push('/test');
+  }
+
+  toCreateOrder() {
+    const { history } = this.props;
+    history.push('/order/create_order');
   }
 
   loadUserInfo() {
@@ -84,7 +92,6 @@ class HomePage extends Component {
       </button>
     );
   }
-
   render() {
     return (
       <div>
@@ -99,6 +106,12 @@ class HomePage extends Component {
           onClick={this.toTestPage}
         >
           toTestPage
+        </button>
+
+        <button
+          onClick={this.toCreateOrder}
+        >
+          toCreateOrder
         </button>
 
         {this.renderLoginButtonStatus()}
