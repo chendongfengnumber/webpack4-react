@@ -30,7 +30,7 @@ module.exports = {
         exclude: path.resolve(root, 'node_modules'),
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         // css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能
         // style-loader 将所有的计算后的样式加入页面中
         use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -43,7 +43,7 @@ module.exports = {
             name: '[path][name].[ext]',
           },
         }],
-      },
+      }
     ],
   },
 
@@ -52,7 +52,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'react-demo',
       template: path.resolve(root, 'template.html'),
-    }),
+    })
   ],
   mode: 'none',
   devServer: {

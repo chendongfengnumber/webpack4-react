@@ -1,0 +1,27 @@
+@charset 'UTF-8';
+
+#file {
+  display: none;
+}
+
+.uploadContainer, .uploadingContainer {
+  width: 200px;
+  height: 200px;
+}
+
+.upload {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 146px;
+  height: 146px;
+  border: 1px dashed #c0ccda;
+}
+
+.iconfont_size:before {
+  font-size: 40px;
+  color: #8c939d;
+}
