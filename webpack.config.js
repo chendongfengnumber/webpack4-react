@@ -36,14 +36,14 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpg|jpeg|png|gif|ico)$/,
+        test: /\.(jpg|jpeg|png|gif|ico|ttf|woff|svg|eot)$/,
         use: [{
           loader: 'file-loader',
           options: {
             name: '[path][name].[ext]',
           },
         }],
-      }
+      },
     ],
   },
 
@@ -52,7 +52,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'react-demo',
       template: path.resolve(root, 'template.html'),
-    })
+    }),
   ],
   mode: 'none',
   devServer: {

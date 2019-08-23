@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+.input_container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex: 1;
+  flex-flow: initial;
+  align-items: center;
+}
+
+.input_left_hint {
+  padding-right: 30px;
+}
+
+#input_style {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex: 1;
+}

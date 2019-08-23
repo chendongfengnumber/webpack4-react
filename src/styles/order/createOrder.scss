@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+
+.shopee_pdf_container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items: center;
+  margin: 50px 0px 0px;
+}
+
+.pdf_hint {
+  padding-right: 30px;
+}

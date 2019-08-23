@@ -8,33 +8,27 @@ const propTypes = {
   uploadResultCallBack: PropTypes.func.isRequired,
 };
 
-const uploadStatus =  {
-  unupload: 'UNUPLOAD', // 未上传
-  uploadig: 'UPLOADING', // 上传中
-  uploaded: 'UPLOADED' // 上传完毕
-}
+const uploadStatus = {
+  unUpload: 'UN_UPLOAD', // 未上传
+  uploading: 'UPLOADING', // 上传中
+  uploaded: 'UPLOADED', // 上传完毕
+};
 
-class UploadFile extends Component {
+class UploadPhoto extends Component {
 
   constructor(props) {
     super(props);
 
     this.uploadFile = this.uploadFile.bind(this);
     this.onchangeFileInfo = this.onchangeFileInfo.bind(this);
-    this.eventDelegate = this.eventDelegate.bind(this);
 
     this.state = {
       loaded: 0, // 已经上传文件的大小
       total: 0, // 要上传文件的大小
       // file: {}, // 上传的文件信息
-      loadStatus: 'UNUPLOAD',
-      previewUrl: ''
+      loadStatus: 'UN_UPLOAD',
+      previewUrl: '',
     };
-  }
-
-  eventDelegate(event) {
-    event.persist()
-    console.log('event', event)
   }
 
   onchangeFileInfo(event) {
@@ -52,7 +46,7 @@ class UploadFile extends Component {
   previewPicture(file) {
     // 实现图片预览
     let fileReader;
-    if(FileReader) {
+    if (FileReader) {
       fileReader = new FileReader();
     } else {
       alert('该浏览不支持图片预览');
@@ -63,8 +57,7 @@ class UploadFile extends Component {
     fileReader.onloadend = (e) => {
       const previewUrl = lodash.get(e, 'target.result') || '';
       this.setState({ loadStatus: uploadStatus.uploaded, previewUrl });
-      console.log(e, 'e');
-    }
+    };
   }
 
   uploadFile(file) {
@@ -83,7 +76,6 @@ class UploadFile extends Component {
     xhr.onprogress = (event) => {
       const { total, loaded, lengthComputable } = event;
       if (lengthComputable) {
-        // onprogressCallBack(totalSize, alreadyAcceptedSize);
         console.log(`总字节： ${total}, 已经接收的字节： ${loaded}`);
       }
     };
@@ -98,37 +90,38 @@ class UploadFile extends Component {
   }
 
   /**
-   *  以下为html渲染 
+   *  以下为html渲染
    * */
 
   renderUpload() {
-    const { loadStatus, previewUrl } =  this.state;
-    console.log('test', loadStatus, previewUrl)
-    
-    switch(loadStatus) {
-      case uploadStatus.unupload: 
+    const { loadStatus, previewUrl } = this.state;
+
+    switch (loadStatus) {
+      case uploadStatus.unUpload:
         return (
           <div className="uploadContainer" onClick={this.eventDelegate}>
             <label className="uploadContainer, upload" htmlFor="file">
-              <span className="iconfont icon-icon_add iconfont_size"></span>
+              <span className="iconfont icon-icon_add iconfont_size" />
             </label>
             <input
               id="file"
-              type="file" 
-              ref={this.textInput} 
+              type="file"
+              accept="image/*"
+              ref={this.textInput}
               onChange={this.onchangeFileInfo}
-              name='test'
+              name="test"
             />
           </div>
-        )
+        );
       case uploadStatus.uploaded:
-        return(
-          <div className='uploadingContainer'>
-            <img src={previewUrl} alt="preview_picture" width="146px" height="146px"/>
+        return (
+          <div className="uploadingContainer">
+            <img src={previewUrl} alt="preview_picture" width="146px" height="146px" />
           </div>
         );
+      default:
+        break;
     }
-    
   }
 
   render() {
@@ -140,5 +133,5 @@ class UploadFile extends Component {
   }
 }
 
-UploadFile.propTypes = propTypes;
-export default UploadFile;
+UploadPhoto.propTypes = propTypes;
+export default UploadPhoto;
