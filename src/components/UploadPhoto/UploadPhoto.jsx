@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import lodash from 'lodash';
-import '../styles/components/upload.scss';
-import '../asset/iconfont/iconfont.css';
+import './uploadPhoto.scss';
+import '../../asset/iconfont/iconfont.css';
 
 const propTypes = {
   uploadResultCallBack: PropTypes.func.isRequired,
@@ -31,13 +31,16 @@ class UploadPhoto extends Component {
     };
   }
 
-  onchangeFileInfo(event) {
+  async onchangeFileInfo(event) {
     // 防止event.taget为null
     event.persist();
+    const { uploadResultCallBack } = this.props;
     const file = lodash.get(event, 'target.files[0]') || {};
 
     // 上传图片
-    this.uploadFile(file);
+    const fileData = await this.uploadFile(file);
+    const { fileId } = JSON.parse(fileData);
+    uploadResultCallBack(fileId);
 
     // 图片预览
     this.previewPicture(file);
@@ -61,33 +64,39 @@ class UploadPhoto extends Component {
   }
 
   uploadFile(file) {
-    const { uploadResultCallBack } = this.props;
-    if (!file.name) {
-      return alert('请上传文件');
-    }
-
-    // ajax请求
-    const xhr = new XMLHttpRequest();
-    const formData = new FormData();
-    formData.append('file', file);
-    xhr.open('POST', 'http://localhost:3000/file/upload');
-    xhr.send(formData);
-
-    xhr.onprogress = (event) => {
-      const { total, loaded, lengthComputable } = event;
-      if (lengthComputable) {
-        console.log(`总字节： ${total}, 已经接收的字节： ${loaded}`);
+    return new Promise((resolve, reject) => {
+      if (!file.name) {
+        return alert('请上传文件');
       }
-    };
+      // ajax请求
+      const xhr = new XMLHttpRequest();
+      const formData = new FormData();
+      formData.append('file', file);
+      xhr.open('POST', 'http://localhost:3000/file/upload');
 
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-          uploadResultCallBack(xhr.responseText);
+      xhr.send(formData);
+
+      xhr.onprogress = (event) => {
+        const { total, loaded, lengthComputable } = event;
+        if (lengthComputable) {
+          console.log(`总字节： ${total}, 已经接收的字节： ${loaded}`);
         }
-      }
-    };
+      };
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) {
+          return;
+        }
+
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+          resolve(xhr.responseText);
+        } else {
+          reject(new Error(xhr.statusText));
+        }
+      };
+    });
   }
+
 
   /**
    *  以下为html渲染

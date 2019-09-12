@@ -9,11 +9,25 @@
 }
 
 .input_left_hint {
-  padding-right: 30px;
+  width: 150px;
 }
 
 #input_style {
   display: -webkit-flex; /* Safari */
   display: flex;
   flex: 1;
+  height: 38px;
+
+  // 清除默认样式
+  border:  #dcdfe6 solid 1px;
+  border-radius: 4px;
+  outline-color: #409eff;
+  outline-width: 1px;
+  padding: 0px;
 }
+
+#input_style:hover {
+  border-color: #c0c4cc;
+}
+
+

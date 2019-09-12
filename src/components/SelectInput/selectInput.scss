@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  display: -webkit-flex; /* Safari */
+  flex-flow: inherit;
+  align-items: center;
+}
+
+.input_left_hint {
+  width: 150px;
+}
+
+#reset_input_default_style_focus {
+  border: 1px solid #409eff;
+}
+
+.input_default_style {
+  display: flex;
+  flex: 1;
+  border: 1px solid #dcdfe6;
+  outline: none;
+  padding: 0px 30px 0px 15px;
+  height: 38px;
+  border-radius: 4px
+}
+
+.input_default_style:hover {
+  border-color: #c0c4cc;
+}
+
+.input_container {
+  position: relative;
+}
+
+.reset_iconfont_size:before {
+  font-size: 14px;
+  line-height: 38px;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+.icon_position {
+  position: absolute;
+  right: 0px;
+}
+
+.data_list_container {
+  position: absolute;
+  z-index: 999;
+  top: 50px;
+  padding: 6px 0px;
+  width: 100%
+}

@@ -1,0 +1,12 @@
+.reset_container {
+  display: flex;
+  flex: 1;
+}
+
+.reset_button {
+  // 重置button标签的默认样式
+  border: 1px solid #20a0ff;
+  padding: 0px;
+  flex: 1;
+  height: 50px;
+}

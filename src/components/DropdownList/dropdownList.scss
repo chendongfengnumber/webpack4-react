@@ -1,0 +1,22 @@
+
+.data_list {
+  max-height: 238px;
+  border: 1px solid #c0c4cc;
+  padding: 6px 0px;
+  background-color: #FFFFFF;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0px 20px;
+}
+
+.item:hover {
+  background-color: #e4e8f1;
+}
+
+.selected {
+  background-color: #20a0ff;
+}

@@ -4,9 +4,19 @@
   display: -webkit-flex; /* Safari */
   display: flex;
   align-items: center;
-  margin: 50px 0px 0px;
+  margin: 10px 0px 0px;
 }
 
 .pdf_hint {
-  padding-right: 30px;
+  width: 150px;
+}
+
+.textarea_container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex: 1;
+}
+
+.shoppe_input_container {
+  margin: 10px 0px 0px 0px;
 }

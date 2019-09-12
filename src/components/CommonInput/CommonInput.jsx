@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import '../styles/components/commonInput.scss';
+import './commonInput.scss';
 
 const propTypes = {
   onChangeCallback: PropTypes.func,
-  inputLeftHint: PropTypes.string.isRequired,
+  inputLeftHint: PropTypes.string,
 };
 
-const defaultPropTypes = {
+const defaultProps = {
   onChangeCallback: null,
   inputLeftHint: '',
 };
 // TODO input 其他事件回调暂时未暴露
 class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+    };
+  }
   render() {
     const {
       onChangeCallback,
@@ -21,11 +27,11 @@ class Input extends Component {
     } = this.props;
     return (
       <div className="input_container">
-        <div className="input_left_hint" > { inputLeftHint }: </div>
+        { inputLeftHint ? <div className="input_left_hint" > { inputLeftHint }: </div> : null }
         <input
           id="input_style"
           type="text"
-          onChange={onChangeCallback}
+          onChange={event => onChangeCallback(event.target.value)}
         />
       </div>
     );
@@ -33,6 +39,6 @@ class Input extends Component {
 }
 
 
-Input.defaultPropTypes = defaultPropTypes;
+Input.defaultProps = defaultProps;
 Input.propTypes = propTypes;
 export default Input;
