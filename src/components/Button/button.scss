@@ -5,8 +5,32 @@
 
 .reset_button {
   // 重置button标签的默认样式
-  border: 1px solid #20a0ff;
   padding: 0px;
   flex: 1;
-  height: 50px;
+  outline: none;
+  border: 0px;
+  background: none;
 }
+
+// 类型
+.primary {
+  background-color: #20a0ff;
+  border: 1px solid #20a0ff;
+  color: #FFFFFF;
+}
+
+.primary:hover {
+  background: #4db3ff;
+  border-color: #4db3ff;
+}
+
+
+// 尺寸
+.large {
+  font-size: 16px;
+  padding: 11px 19px;
+}
+
+
+
+

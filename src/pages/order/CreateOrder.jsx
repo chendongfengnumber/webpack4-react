@@ -17,6 +17,7 @@ class CreateOrder extends Component {
     this.getChangePackageId = this.getChangePackageId.bind(this);
     this.getChangeInventoryName = this.getChangeInventoryName.bind(this);
     this.getUploadMainProductResult = this.getUploadMainProductResult.bind(this);
+    this.submitOrder = this.submitOrder.bind(this);
 
     this.state = {
       shoppeOrderId: 0,
@@ -57,29 +58,27 @@ class CreateOrder extends Component {
       mainProductFileId,
     } = this.state;
 
-    console.log('f', shoppeOrderId,
-    shoppeInventoryName,
-    packageId,
-    pdfFileId,
-    mainProductFileId,
-  );
+    if (!shoppeOrderId) {
+      return alert('请填写SHOPEE订单号');
+    }
+
+    if (!shoppeInventoryName) {
+      return alert('请选择SHOPEE仓库');
+    }
+
+    if (!packageId) {
+      return alert('请填写包裹快递单号');
+    }
+
+    if (!pdfFileId) {
+      return alert('请上传SHOPEE面单PDF');
+    }
+
+
+
   }
 
   render() {
-    const {
-      shoppeOrderId,
-      shoppeInventoryName,
-      packageId,
-      pdfFileId,
-      mainProductFileId,
-    } = this.state;
-
-    console.log('f', shoppeOrderId,
-    shoppeInventoryName,
-    packageId,
-    pdfFileId,
-    mainProductFileId,
-  );
     return (
       <div>
         <div>创建订单</div>
@@ -123,11 +122,19 @@ class CreateOrder extends Component {
           />
         </div>
         <div>
+          <text>剩余积分:</text>
+          <text>0</text>
+          <text>分</text>
+          <text>(积分不足，请先</text>
+          <text>充值)</text>
+        </div>
+        <div className="button_container">
           <Button
             content="提交"
             type="primary"
-            size="normal"
+            size="large"
             disabled={false}
+            onClick={this.submitOrder}
           />
         </div>
       </div>
